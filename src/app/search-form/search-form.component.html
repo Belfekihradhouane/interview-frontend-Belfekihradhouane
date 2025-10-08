@@ -1,0 +1,75 @@
+<div class="search-form-bg">
+  <div class="search-form-title">Bred APP</div>
+</div>
+<form class="search-form-container" autocomplete="off" (ngSubmit)="getCities()" novalidate>
+  <div class="search-form-row">
+    <div class="form-field">
+      <input id="limit" name="limit" type="text" inputmode="numeric" pattern="[0-9]*" [(ngModel)]="limit" placeholder="_limit" />
+    </div>
+    <div class="form-field">
+      <input id="start" name="start" type="text" inputmode="numeric" pattern="[0-9]*" [(ngModel)]="start" placeholder="_start" />
+    </div>
+    <div class="form-field">
+      <select id="sort" name="sort" [(ngModel)]="sort">
+        <option [value]="SortType.None" disabled hidden>_sort</option>
+        <option [value]="SortType.ZipCode">zipCode</option>
+        <option [value]="SortType.Name">name</option>
+      </select>
+    </div>
+  </div>
+  <div class="search-form-row">
+    <div class="form-field">
+      <input id="name_like" name="name_like" type="text" [(ngModel)]="name_like" placeholder="name_like" />
+    </div>
+    <div class="form-field">
+      <input id="zipCode_like" name="zipCode_like" type="text" [(ngModel)]="zipCode_like" placeholder="zipCode_like" />
+    </div>
+    <div class="form-field">
+      <select id="order" name="order" [(ngModel)]="order">
+        <option [value]="OrderType.None" disabled hidden>_order</option>
+        <option [value]="OrderType.ASC">ASC</option>
+        <option [value]="OrderType.DESC">DESC</option>
+      </select>
+    </div>
+  </div>
+  <div class="search-form-actions">
+    <button type="submit">Rechercher</button>
+  </div>
+</form>
+
+<!-- Message rouge -->
+<div *ngIf="hasSearched && !errorMessage && pagedCities.length > 0" class="results-title" style="color: #d32f2f; text-align: center; margin-top: 24px; font-size: 1.2rem; font-weight: 500;">
+  Résultats de recherche selon les critères saisies
+</div>
+
+<!-- Zone résultats centrée -->
+<div *ngIf="hasSearched && pagedCities.length > 0" class="results-zone">
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>ZipCode</th>
+        <th>Coordinate X</th>
+        <th>Coordinate Y</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let city of pagedCities">
+        <td>{{ city.name }}</td>
+        <td class="zip">{{ city.zipCode }}</td>
+        <td>{{ city.coordinates?.x }}</td>
+        <td>{{ city.coordinates?.y }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Précédent</button>
+    <span>Page {{ currentPage }} / {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Suivant</button>
+  </div>
+</div>
+
+<!-- Aucun résultat -->
+<div *ngIf="hasSearched && pagedCities.length === 0 && !errorMessage" class="no-result" style="text-align: center; margin-top: 32px; color: #d32f2f; font-size: 1.1rem;">
+  Aucune ville trouvée.
+</div>
