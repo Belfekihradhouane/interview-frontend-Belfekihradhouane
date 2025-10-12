@@ -1,0 +1,41 @@
+/* Toolbar fond blanc, texte bleu */
+.custom-toolbar {
+  background: #fff;
+  color: #4F86C6; /* bleu principal */
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* "Bred APP" en bleu normal */
+.brand {
+  font-weight: 700;
+  color: #4F86C6; /* bleu principal */
+  font-size: 1.2rem;
+}
+
+/* Boutons : texte bleu normal, sans majuscules */
+.nav-btn {
+  color: #4F86C6 !important; /* bleu principal */
+  font-weight: 500;
+  text-transform: none;
+  transition: color 0.2s ease;
+}
+
+/* Survol : bleu légèrement plus foncé */
+.nav-btn:hover {
+  color: #3E6EA6 !important; /* bleu foncé au hover */
+}
+
+/* Actif : bleu foncé encore plus visible */
+.nav-btn.active {
+  color: #2E5B8F !important; /* bleu encore plus foncé quand actif */
+  font-weight: 600;
+}
+
+/* Zone principale */
+.page-content {
+  padding: 32px;
+}

@@ -1,1 +1,45 @@
-works
+<div class="page">
+  <!-- Bandeau -->
+  <header class="app-hero">
+    <h1>Bred APP</h1>
+  </header>
+
+  <!-- Conteneur blanc centré (toujours visible) -->
+  <main class="content-shell">
+    <section class="cards-stack">
+      <!-- Carte : ville sélectionnée -->
+      <article *ngIf="selectedCity" class="city-card">
+        <div class="city-card__header info-title-full">{{ selectedCity.name }}</div>
+        <div class="city-card__body">
+          <div>{{ selectedCity.name }}</div>
+          <div>{{ selectedCity.coordinates?.x }}</div>
+          <div>{{ selectedCity.coordinates?.y }}</div>
+        </div>
+      </article>
+      <div *ngIf="nearestCity" class="nearest-label">Ville la plus proche</div>
+      <!-- Ville la plus proche -->
+      <article *ngIf="nearestCity" class="city-card nearest-card">
+        <div class="city-card__header info-title-full">{{ nearestCity.name }}</div>
+        <div class="city-card__body">
+          <div>{{ nearestCity.name }}</div>
+          <div>{{ nearestCity.coordinates?.x }}</div>
+          <div>{{ nearestCity.coordinates?.y }}</div>
+        </div>
+      </article>
+      <!-- Message d'information si aucune ville sélectionnée -->
+      <article *ngIf="!selectedCity" class="city-card info-card improved-info">
+        <div class="city-card__header info-title-full">
+          Information
+        </div>
+        <div class="city-card__body info-body">
+          <div class="info-text">
+            Utilisez la page Recherche de ville pour afficher les détails d'une ville.
+          </div>
+          <div class="info-link-wrapper">
+            <a [routerLink]="['/search']" class="search-link info-link">Recherche de ville</a>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+</div>

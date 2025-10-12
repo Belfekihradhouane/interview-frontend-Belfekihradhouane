@@ -54,7 +54,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let city of pagedCities">
+      <tr *ngFor="let city of pagedCities"
+          (click)="goToCityDetail(city)"
+          class="clickable-row">
         <td>{{ city.name }}</td>
         <td class="zip">{{ city.zipCode }}</td>
         <td>{{ city.coordinates?.x }}</td>
@@ -62,10 +64,17 @@
       </tr>
     </tbody>
   </table>
-  <div class="pagination">
-    <button (click)="prevPage()" [disabled]="currentPage === 1">Précédent</button>
-    <span>Page {{ currentPage }} / {{ totalPages }}</span>
-    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Suivant</button>
+  <div class="pagination" *ngIf="totalPages > 1">
+    <button (click)="goToFirst()" [disabled]="currentPage === 1" aria-label="Première page">&#8592;</button>
+    <ng-container *ngFor="let page of pageNumbers">
+      <button *ngIf="page > 0"
+              (click)="goToPage(page)"
+              [class.active-page]="page === currentPage">
+        {{ page }}
+      </button>
+      <span *ngIf="page === -1" class="pagination-ellipsis">...</span>
+    </ng-container>
+    <button (click)="goToLast()" [disabled]="currentPage === totalPages" aria-label="Dernière page">&#8594;</button>
   </div>
 </div>
 

@@ -1,26 +1,24 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<mat-toolbar color="primary">
-  <span>Bred APP</span>
+<mat-toolbar class="custom-toolbar">
+  <span class="brand">Bred APP</span>
   <span class="spacer"></span>
-  <button mat-button routerLink="/search" routerLinkActive="active">Recherche</button>
-  <button mat-button routerLink="/find-cities" routerLinkActive="active">Villes</button>
+
+  <button mat-button
+          class="nav-btn"
+          routerLink="/search"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+    Recherche de villes
+  </button>
+
+  <button mat-button
+          class="nav-btn"
+          routerLink="/find-cities"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+    La ville la plus proche
+  </button>
 </mat-toolbar>
-<main style="padding: 32px;">
+
+<main class="page-content">
   <router-outlet></router-outlet>
 </main>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
